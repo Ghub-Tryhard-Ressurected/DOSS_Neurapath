@@ -54,8 +54,9 @@ Before running the project, make sure you have installed:
 - [Node.js](https://nodejs.org/) — preferably an LTS version.
 - npm — included with Node.js.
 - [Git](https://git-scm.com/) — required to clone the repository.
+- [Docker](https://www.docker.com/products/docker-desktop/) — required if running via Docker.
 
-Docker, Jenkins, Kubernetes, Prometheus, and Grafana are not required just to run the React frontend. They are needed when setting up or demonstrating the corresponding DevOps integrations.
+Jenkins, Kubernetes, Prometheus, and Grafana are not required just to run the React frontend or Docker container. They are needed when setting up or demonstrating the corresponding DevOps integrations.
 
 ## 🚀 Getting Started
 
@@ -113,6 +114,58 @@ To preview the production build locally, run:
 
 ```bash
 npm run preview
+```
+
+## 🐳 Running with Docker
+
+You can also run the application inside a Docker container using the provided `Dockerfile`.
+
+### 1. Install Docker
+
+Make sure you have Docker installed on your machine:
+- Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows / macOS) or [Docker Engine](https://docs.docker.com/engine/install/) (Linux).
+- Ensure the Docker daemon is running.
+
+### 2. Build the Docker image
+
+In the project root directory, run:
+
+```bash
+docker build -t devops-learning-hub .
+```
+
+This uses the multi-stage `Dockerfile` to build the Vite production bundle with Node.js and package it into a lightweight Nginx web server.
+
+### 3. Run the Docker container
+
+Start a container from the image:
+
+```bash
+docker run -d -p 8080:80 --name devops-learning-hub devops-learning-hub
+```
+
+> **Note:** Port `8080` on your host machine is mapped to port `80` (Nginx) inside the container. You can change `8080` to any available port (such as `80:80` or `3000:80`).
+
+### 4. Open the application
+
+Open your browser and navigate to:
+
+```text
+http://localhost:8080/
+```
+
+### 5. Stop and remove the container
+
+To stop the running container:
+
+```bash
+docker stop devops-learning-hub
+```
+
+To remove the container:
+
+```bash
+docker rm devops-learning-hub
 ```
 
 ## 🔄 DevOps Workflow
