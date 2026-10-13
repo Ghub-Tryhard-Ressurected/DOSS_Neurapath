@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: devops-learning-hub
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: devops-learning-hub
+
+  template:
+    metadata:
+      labels:
+        app: devops-learning-hub
+
+    spec:
+      containers:
+        - name: devops-learning-hub
+          image: devops-learning-hub:1.0
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
