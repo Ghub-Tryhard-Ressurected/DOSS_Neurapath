@@ -167,6 +167,45 @@ To remove the container:
 ```bash
 docker rm devops-learning-hub
 ```
+## ⚙️ Jenkins CI Pipeline
+
+Jenkins is used to automate the Continuous Integration (CI) process for the DevOps Learning Hub application. The pipeline fetches the source code from GitHub, installs dependencies, checks code quality, and creates a production build.
+
+### Prerequisites
+
+- Jenkins installed and running.
+- Git configured in Jenkins.
+- Node.js and npm available to the Jenkins build environment.
+- The project source code hosted on GitHub.
+
+### Pipeline Stages
+
+1. **Checkout:** Fetches the latest source code from the GitHub repository.
+2. **Install Dependencies:** Installs the required npm packages.
+3. **Lint:** Checks the source code for linting errors.
+4. **Build:** Generates an optimized production build in the `dist/` directory.
+
+### Jenkins Setup
+
+1. Open the Jenkins dashboard.
+2. Click **New Item** and create a **Pipeline** job.
+3. Under Pipeline, select **Pipeline script from SCM**.
+4. Select Git as the source control management system.
+5. Enter the repository URL:
+
+   ```text
+   https://github.com/omraj2006/devops-learning-hub.git
+   ```
+
+6. Set the branch specifier to `*/main` and the script path to `Jenkinsfile`.
+7. Save the configuration and click **Build Now**.
+8. Open **Console Output** to monitor the build stages and check the result.
+
+### Jenkinsfile
+
+The `Jenkinsfile` is stored in the root directory of the repository. It defines the pipeline stages and allows other team members to configure Jenkins using the same build instructions.
+
+A successful pipeline confirms that dependencies are installed, lint checks pass, and the application builds successfully.
 
 ## 🔄 DevOps Workflow
 
