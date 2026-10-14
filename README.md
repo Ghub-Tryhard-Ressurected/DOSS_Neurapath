@@ -553,6 +553,122 @@ The `Jenkinsfile` is stored in the root directory of the repository. It defines 
 
 A successful pipeline confirms that dependencies are installed, lint checks pass, and the application builds successfully.
 
+## 📊 Monitoring with Prometheus and Grafana
+
+The project includes a monitoring setup using Prometheus, an Nginx Prometheus Exporter, and Grafana to collect and visualize web server metrics.
+
+### Monitoring Architecture
+
+```text
+DevOps Learning Hub
+        |
+   Nginx Web Server
+   (Port 8080)
+        |
+   /stub_status
+        |
+ Nginx Prometheus Exporter
+     (Port 9113)
+        |
+    Prometheus
+     (Port 9090)
+        |
+     Grafana
+     (Port 3000)
+```
+
+### Technologies and Purpose
+
+| Technology | Purpose |
+|---|---|
+| Nginx stub status | Exposes basic Nginx connection statistics |
+| Nginx Prometheus Exporter | Converts Nginx status information into Prometheus metrics |
+| Prometheus | Scrapes and stores monitoring metrics |
+| Grafana | Visualizes metrics through dashboards |
+| Docker Compose | Runs the monitoring services together |
+
+### 1. Start the Web Application
+
+From the project root, build and start the application container:
+
+```bash
+docker build -t devops-learning-hub:1.0 .
+docker run -d --name devops-learning-hub -p 8080:80 devops-learning-hub:1.0
+```
+
+Open the application at `http://localhost:8080`.
+
+The Nginx status endpoint is available at `http://localhost:8080/stub_status`.
+
+### 2. Start the Monitoring Stack
+
+Navigate to the monitoring directory:
+
+```bash
+cd monitoring
+```
+
+Start the services:
+
+```bash
+docker compose up -d
+```
+
+The monitoring configuration is stored in:
+
+- `monitoring/docker-compose.yml`
+- `monitoring/prometheus/prometheus.yml`
+
+The Docker Compose configuration starts Prometheus, Grafana, and the Nginx Prometheus Exporter.
+
+**Important:** The exporter configuration expects the web application to be accessible at `http://host.docker.internal:8080/stub_status`. Start the application container on port 8080 before starting monitoring.
+
+### 3. Access the Monitoring Tools
+
+| Service | URL |
+|---|---|
+| Prometheus | `http://localhost:9090` |
+| Prometheus Targets | `http://localhost:9090/targets` |
+| Nginx Exporter Metrics | `http://localhost:9113/metrics` |
+| Grafana | `http://localhost:3000` |
+
+In Prometheus, open **Status → Targets** or visit `/targets` to check that the Prometheus and Nginx scraping targets are `UP`.
+
+### 4. Grafana Dashboards
+
+The project includes exported dashboard JSON files:
+
+- `monitoring/grafana/cpu-usage-dashboard.json`
+- `monitoring/grafana/devops-monitoring-dashboard.json`
+
+Import these files into Grafana to recreate the dashboards. In Grafana, use the dashboard import feature and select the appropriate JSON file. Select the Prometheus data source when prompted.
+
+The DevOps Monitoring Dashboard includes panels for:
+
+- Active Nginx connections using `nginx_connections_active`.
+- Nginx HTTP request rate using `rate(nginx_http_requests_total[5m])`.
+
+The CPU Usage dashboard uses `rate(process_cpu_seconds_total[5m])`, which measures CPU time consumed by the monitored Prometheus process rather than total host CPU usage.
+
+### 5. Stop the Monitoring Services
+
+From the `monitoring` directory, run:
+
+```bash
+docker compose down
+```
+
+This stops and removes the monitoring containers while retaining named-volume data by default. To stop the web application separately, run:
+
+```bash
+docker stop devops-learning-hub
+```
+
+### Monitoring Learning Outcomes
+
+This setup demonstrates how to expose Nginx status information, export metrics, scrape metrics with Prometheus, verify monitoring targets, and visualize metrics in Grafana.
+
+
 ## 🔄 DevOps Workflow
 
 The project aims to demonstrate how different DevOps tools work together in a typical software delivery pipeline:
