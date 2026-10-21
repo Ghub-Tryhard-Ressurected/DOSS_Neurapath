@@ -1,8 +1,6 @@
-import ToolPage from '../components/ToolPage';
-import { tools } from '../data/tools';
+import TopicPage from '../components/ToolPage';
+import { topics } from '../data/topics';
 
-function Docker() {
-  return <ToolPage tool={tools[2]} />;
+export default function Breakthroughs() {
+  return <TopicPage topic={topics[2]} />;
 }
-
-export default Docker;

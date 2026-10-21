@@ -1,8 +1,6 @@
-import ToolPage from '../components/ToolPage';
-import { tools } from '../data/tools';
+import TopicPage from '../components/ToolPage';
+import { topics } from '../data/topics';
 
-function Kubernetes() {
-  return <ToolPage tool={tools[3]} />;
+export default function DailyLife() {
+  return <TopicPage topic={topics[3]} />;
 }
-
-export default Kubernetes;

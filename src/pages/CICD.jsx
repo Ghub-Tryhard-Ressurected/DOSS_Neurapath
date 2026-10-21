@@ -1,8 +1,6 @@
-import ToolPage from '../components/ToolPage';
-import { tools } from '../data/tools';
+import TopicPage from '../components/ToolPage';
+import { topics } from '../data/topics';
 
-function CICD() {
-  return <ToolPage tool={tools[1]} />;
+export default function Landscape() {
+  return <TopicPage topic={topics[1]} />;
 }
-
-export default CICD;

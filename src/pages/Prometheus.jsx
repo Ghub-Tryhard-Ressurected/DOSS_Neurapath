@@ -1,8 +1,6 @@
-import ToolPage from '../components/ToolPage';
-import { tools } from '../data/tools';
+import TopicPage from '../components/ToolPage';
+import { topics } from '../data/topics';
 
-function Prometheus() {
-  return <ToolPage tool={tools[4]} />;
+export default function Future() {
+  return <TopicPage topic={topics[4]} />;
 }
-
-export default Prometheus;

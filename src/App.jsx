@@ -1,31 +1,30 @@
-
 import { Routes, Route } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Navbar  from './components/Navbar';
+import Footer  from './components/Footer';
 
-import Home from './pages/Home';
-import GitGithub from './pages/GitGithub';
-import CICD from './pages/CICD';
-import Docker from './pages/Docker';
-import Kubernetes from './pages/Kubernetes';
-import Prometheus from './pages/Prometheus';
-import Grafana from './pages/Grafana';
+import Home          from './pages/Home';
+import Fundamentals  from './pages/GitGithub';
+import Landscape     from './pages/CICD';
+import Breakthroughs from './pages/Docker';
+import DailyLife     from './pages/Kubernetes';
+import Future        from './pages/Prometheus';
+import Careers       from './pages/Grafana';
 
-function App() {
+export default function App() {
   return (
     <>
       <Navbar />
 
-      <main>
+      <main id="main-content">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/git-github" element={<GitGithub />} />
-          <Route path="/ci-cd" element={<CICD />} />
-          <Route path="/docker" element={<Docker />} />
-          <Route path="/kubernetes" element={<Kubernetes />} />
-          <Route path="/prometheus" element={<Prometheus />} />
-          <Route path="/grafana" element={<Grafana />} />
+          <Route path="/"              element={<Home />}          />
+          <Route path="/fundamentals"  element={<Fundamentals />}  />
+          <Route path="/landscape"     element={<Landscape />}     />
+          <Route path="/breakthroughs" element={<Breakthroughs />} />
+          <Route path="/daily-life"    element={<DailyLife />}     />
+          <Route path="/future"        element={<Future />}        />
+          <Route path="/careers"       element={<Careers />}       />
         </Routes>
       </main>
 
@@ -33,5 +32,3 @@ function App() {
     </>
   );
 }
-
-export default App;

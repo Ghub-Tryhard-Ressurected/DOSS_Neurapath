@@ -1,8 +1,6 @@
-import ToolPage from '../components/ToolPage';
-import { tools } from '../data/tools';
+import TopicPage from '../components/ToolPage';
+import { topics } from '../data/topics';
 
-function GitGithub() {
-  return <ToolPage tool={tools[0]} />;
+export default function Fundamentals() {
+  return <TopicPage topic={topics[0]} />;
 }
-
-export default GitGithub;

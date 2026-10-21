@@ -1,210 +1,249 @@
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
-  ArrowRight,
-  GitBranch,
-  Workflow,
-  Container,
-  Boxes,
-  Activity,
-  ChartNoAxesCombined,
-  Search,
-  Layers3,
+  ArrowRight, Search, Zap, Brain, Globe,
+  Sparkles, Smartphone, Rocket, GraduationCap,
+  TrendingUp, Users, BookOpen,
 } from 'lucide-react';
 
-import { tools } from '../data/tools';
-import ToolCard from '../components/ToolCard';
+import { topics } from '../data/topics';
+import TopicCard from '../components/ToolCard';
 
-const pipeline = [
-  { name: 'Git', icon: GitBranch, color: '#f0a45d' },
-  { name: 'CI/CD', icon: Workflow, color: '#b59aff' },
-  { name: 'Docker', icon: Container, color: '#67b7ff' },
-  { name: 'Kubernetes', icon: Boxes, color: '#6d9cff' },
-  { name: 'Prometheus', icon: Activity, color: '#ff9a73' },
+/* Visual flow showing how AI works at a high level */
+const aiFlow = [
+  { label: 'Data',       icon: Brain,          key: 'fundamentals', color: '#a78bfa' },
+  { label: 'Models',     icon: Sparkles,        key: 'breakthroughs', color: '#34d399' },
+  { label: 'Landscape',  icon: Globe,           key: 'landscape',    color: '#22d3ee' },
+  { label: 'Daily Life', icon: Smartphone,      key: 'daily-life',   color: '#fbbf24' },
+  { label: 'Future',     icon: Rocket,          key: 'future',       color: '#f472b6' },
+  { label: 'Careers',    icon: GraduationCap,   key: 'careers',      color: '#60a5fa' },
+];
+
+const whyCards = [
   {
-    name: 'Grafana',
-    icon: ChartNoAxesCombined,
-    color: '#f6c76b',
+    icon: TrendingUp,
+    title: 'AI is moving fast',
+    desc: 'The capabilities that shocked experts in 2022 are now standard features in everyday apps. Staying informed is no longer optional.',
+  },
+  {
+    icon: Users,
+    title: 'For everyone, not just engineers',
+    desc: 'You don\'t need to code to understand AI. This guide speaks plainly — explaining concepts, tradeoffs, and futures in clear language.',
+  },
+  {
+    icon: BookOpen,
+    title: 'Structured learning path',
+    desc: 'From fundamentals to career roadmaps, each section builds on the last — giving you a complete mental model of the AI era.',
   },
 ];
 
-function Home() {
+export default function Home() {
   const [search, setSearch] = useState('');
 
-  const filteredTools = tools.filter((tool) =>
-    `${tool.name} ${tool.description} ${tool.category}`
+  const filtered = topics.filter((t) =>
+    `${t.name} ${t.description} ${t.category}`
       .toLowerCase()
       .includes(search.toLowerCase())
   );
 
   return (
     <>
-      {/* Hero */}
+      {/* ── Hero ───────────────────────────────────────── */}
       <section className="hero">
+        <div className="hero-orb hero-orb-1" aria-hidden="true" />
+        <div className="hero-orb hero-orb-2" aria-hidden="true" />
+        <div className="hero-orb hero-orb-3" aria-hidden="true" />
+
         <div className="container hero-content">
           <div className="hero-badge">
-            <Layers3 size={15} />
-            <span>Learn • Build • Collaborate</span>
+            <div className="hero-badge-dot" />
+            Your guide to the AI era
           </div>
 
           <h1>
-            Understand the tools.
-            <br />
-            <span className="hero-highlight">
-              Master the DevOps pipeline.
-            </span>
+            <span className="hero-line-plain">The world changed.</span>
+            <span className="hero-line-gradient">Understand how.</span>
           </h1>
 
           <p className="hero-description">
-            Explore the technologies that take software from source
-            code to deployment, monitoring, and beyond.
-            Learn how every tool fits into the bigger picture.
+            AI is reshaping everything — work, creativity, science, and daily life.
+            NeuralPath explains what it is, who's building it, where it's going,
+            and how you can be part of it. No jargon. No hype. Just clarity.
           </p>
 
           <div className="hero-actions">
-            <a href="#tools" className="btn btn-primary">
-              Explore the tools <ArrowRight size={18} />
+            <a href="#topics" className="btn btn-primary" id="hero-cta-explore">
+              Explore topics <ArrowRight size={17} />
             </a>
-
-            <a href="#pipeline" className="btn btn-secondary">
-              View the pipeline
-            </a>
+            <Link to="/fundamentals" className="btn btn-secondary" id="hero-cta-start">
+              Start with fundamentals
+            </Link>
           </div>
 
           <div className="hero-stats">
-            <div>
+            <div className="hero-stat">
               <strong>6</strong>
-              <span>Core tools</span>
+              <span>Core Topics</span>
             </div>
-            <div>
-              <strong>1</strong>
-              <span>Connected workflow</span>
+            <div className="hero-stat">
+              <strong>30+</strong>
+              <span>Key Concepts</span>
             </div>
-            <div>
+            <div className="hero-stat">
               <strong>∞</strong>
-              <span>Things to learn</span>
+              <span>Things to explore</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pipeline */}
-      <section className="page-section" id="pipeline">
+      {/* ── Why NeuralPath ──────────────────────────────── */}
+      <section className="page-section" style={{ paddingTop: 60, paddingBottom: 60 }}>
         <div className="container">
-          <div className="section-label">THE BIG PICTURE</div>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: 20,
+          }}>
+            {whyCards.map((c) => (
+              <div key={c.title} style={{
+                display: 'flex', gap: 16, padding: 24,
+                background: 'var(--surface-solid)',
+                border: '1px solid var(--border)', borderRadius: 16,
+                alignItems: 'flex-start',
+              }}>
+                <div style={{
+                  flexShrink: 0, width: 42, height: 42,
+                  display: 'grid', placeItems: 'center',
+                  borderRadius: 12, background: 'rgba(129,140,248,0.1)',
+                  color: 'var(--accent)', border: '1px solid var(--border)',
+                }}>
+                  <c.icon size={20} />
+                </div>
+                <div>
+                  <h3 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: 6 }}>{c.title}</h3>
+                  <p style={{ fontSize: '0.85rem', color: 'var(--text-dim)', lineHeight: 1.7, margin: 0 }}>{c.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <h2 className="section-heading">
-            One pipeline. Six powerful tools.
-          </h2>
-
+      {/* ── AI Ecosystem Flow ───────────────────────────── */}
+      <section className="page-section ecosystem-section" id="ecosystem">
+        <div className="container">
+          <div className="section-label">The Big Picture</div>
+          <h2 className="section-heading">The AI landscape at a glance.</h2>
           <p className="section-description">
-            Each tool solves a different problem. Together, they
-            support a workflow for delivering and operating software.
+            Six connected dimensions — from foundational concepts to career paths.
+            Click any node to dive deep.
           </p>
 
-          <div className="pipeline">
-            {pipeline.map((step, index) => {
-              const Icon = step.icon;
-              const tool = tools[index];
-
+          <div className="ai-stack-flow" aria-label="AI learning landscape diagram">
+            {aiFlow.map((node, i) => {
+              const Icon = node.icon;
+              const topic = topics[i];
               return (
-                <div className="pipeline-item" key={step.name}>
+                <div className="stack-step" key={node.key}>
                   <Link
-                    to={tool.path}
-                    className="pipeline-node"
-                    style={{ '--node-color': step.color }}
-                    title={`Learn about ${step.name}`}
+                    to={topic.path}
+                    className="stack-node"
+                    data-topic={node.key}
+                    title={`Explore ${topic.name}`}
                   >
-                    <Icon size={24} />
-                    <span>{step.name}</span>
+                    <div className="stack-node-icon">
+                      <Icon size={20} />
+                    </div>
+                    <span className="stack-node-label">{node.label}</span>
                   </Link>
 
-                  {index < pipeline.length - 1 && (
-                    <ArrowRight
-                      className="pipeline-arrow"
-                      size={19}
-                    />
+                  {i < aiFlow.length - 1 && (
+                    <div className="stack-arrow">
+                      <ArrowRight size={16} />
+                    </div>
                   )}
                 </div>
               );
             })}
           </div>
 
-          <p className="pipeline-note">
-            This is a conceptual workflow. Actual pipelines can vary
-            depending on the project and its architecture.
+          <p className="stack-note">
+            Each topic builds on the previous — but you can start anywhere.
           </p>
         </div>
       </section>
 
-      {/* Tools */}
-      <section className="page-section tools-section" id="tools">
+      {/* ── Topics Grid ─────────────────────────────────── */}
+      <section className="page-section topics-section" id="topics">
         <div className="container">
-          <div className="tools-heading">
+          <div className="topics-header">
             <div>
-              <div className="section-label">EXPLORE THE ECOSYSTEM</div>
-              <h2 className="section-heading">Your learning toolkit</h2>
+              <div className="section-label">Explore</div>
+              <h2 className="section-heading">Your AI learning path</h2>
               <p className="section-description">
-                Start with any tool and discover what it does,
-                how it works, and why it matters.
+                Each section is self-contained. Start where your curiosity leads.
               </p>
             </div>
 
-            <label className="search-box">
-              <Search size={18} />
+            <label className="search-box" htmlFor="topic-search">
+              <Search size={16} style={{ flexShrink: 0, color: 'var(--text-faint)' }} />
               <input
+                id="topic-search"
                 type="search"
-                placeholder="Search tools..."
+                placeholder="Search topics…"
                 value={search}
-                onChange={(event) => setSearch(event.target.value)}
-                aria-label="Search DevOps tools"
+                onChange={(e) => setSearch(e.target.value)}
+                aria-label="Search AI topics"
               />
             </label>
           </div>
 
-          <div className="tools-grid">
-            {filteredTools.map((tool) => (
-              <ToolCard key={tool.path} tool={tool} />
+          <div className="topics-grid">
+            {filtered.map((topic) => (
+              <TopicCard key={topic.path} topic={topic} />
             ))}
-          </div>
 
-          {filteredTools.length === 0 && (
-            <div className="empty-state">
-              <p>No tools found for "{search}".</p>
-              <button
-                className="btn btn-secondary"
-                onClick={() => setSearch('')}
-              >
-                Clear search
-              </button>
-            </div>
-          )}
+            {filtered.length === 0 && (
+              <div className="empty-state">
+                <p>No topics found for &ldquo;{search}&rdquo;</p>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => setSearch('')}
+                  id="clear-search-btn"
+                >
+                  Clear search
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
-      {/* Collaboration */}
-      <section className="page-section collaboration-section">
-        <div className="container collaboration-card">
-          <div className="collaboration-icon">
-            <Layers3 size={28} />
-          </div>
-
-          <div>
-            <div className="section-label">BUILT TOGETHER</div>
-            <h2 className="section-heading">
-              One project. A collaborative team.
-            </h2>
-            <p className="section-description">
-              Each tool has its own page, making it easier for
-              team members to contribute independently. Learn,
-              improve, and build the project together.
-            </p>
+      {/* ── CTA ─────────────────────────────────────────── */}
+      <section className="page-section cta-section">
+        <div className="container">
+          <div className="cta-card">
+            <div className="cta-icon">
+              <Zap size={28} />
+            </div>
+            <div className="cta-content">
+              <div className="section-label">Ready to Start?</div>
+              <h2 className="section-heading">Begin with the fundamentals.</h2>
+              <p className="section-description">
+                Not sure where to start? AI Fundamentals gives you the mental models
+                to understand everything else — capabilities, limitations, and how
+                modern AI actually works under the hood.
+              </p>
+              <div style={{ marginTop: 24 }}>
+                <Link to="/fundamentals" className="btn btn-primary" id="cta-fundamentals-btn">
+                  Start with AI Fundamentals <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
     </>
   );
 }
-
-export default Home;

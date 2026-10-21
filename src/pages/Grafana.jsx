@@ -1,8 +1,6 @@
-import ToolPage from '../components/ToolPage';
-import { tools } from '../data/tools';
+import TopicPage from '../components/ToolPage';
+import { topics } from '../data/topics';
 
-function Grafana() {
-  return <ToolPage tool={tools[5]} />;
+export default function Careers() {
+  return <TopicPage topic={topics[5]} />;
 }
-
-export default Grafana;
