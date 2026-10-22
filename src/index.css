@@ -6,19 +6,19 @@
 
 /* ── Tokens ───────────────────────────────────────── */
 :root {
-  --bg:            #05080f;
-  --bg2:           #080d1a;
+  --bg:            #030712;
+  --bg2:           #070d1d;
   --surface:       rgba(255,255,255,0.04);
-  --surface-solid: #0d1226;
-  --surface-hover: rgba(255,255,255,0.07);
+  --surface-solid: #0b1329;
+  --surface-hover: rgba(255,255,255,0.08);
   --border:        rgba(255,255,255,0.08);
-  --border-hover:  rgba(255,255,255,0.18);
-  --text:          #eef2ff;
-  --text-dim:      #8895b3;
-  --text-faint:    #4a5578;
-  --accent:        #818cf8;
-  --accent2:       #c084fc;
-  --accent-glow:   rgba(129,140,248,0.3);
+  --border-hover:  rgba(6,182,212,0.3);
+  --text:          #f1f5f9;
+  --text-dim:      #94a3b8;
+  --text-faint:    #475569;
+  --accent:        #06b6d4;
+  --accent2:       #3b82f6;
+  --accent-glow:   rgba(6,182,212,0.4);
   --radius:        16px;
   --radius-sm:     10px;
   --radius-xs:     6px;
@@ -223,33 +223,34 @@ body::before {
   position: relative;
   overflow: hidden;
   padding: 160px 0 100px;
+  background: radial-gradient(ellipse 80% 50% at 50% -15%, rgba(6, 182, 212, 0.16), transparent 75%);
 }
 
 .hero-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
+  filter: blur(85px);
   animation: orbFloat 9s ease-in-out infinite;
   pointer-events: none;
 }
 
 .hero-orb-1 {
-  width: 560px; height: 560px;
-  background: radial-gradient(circle, rgba(129,140,248,0.18) 0%, transparent 70%);
+  width: 580px; height: 580px;
+  background: radial-gradient(circle, rgba(6,182,212,0.24) 0%, transparent 70%);
   top: -120px; right: -80px;
   animation-delay: 0s;
 }
 
 .hero-orb-2 {
-  width: 420px; height: 420px;
-  background: radial-gradient(circle, rgba(192,132,252,0.14) 0%, transparent 70%);
+  width: 440px; height: 440px;
+  background: radial-gradient(circle, rgba(59,130,246,0.22) 0%, transparent 70%);
   bottom: -60px; left: -80px;
   animation-delay: -4.5s;
 }
 
 .hero-orb-3 {
-  width: 280px; height: 280px;
-  background: radial-gradient(circle, rgba(34,211,238,0.08) 0%, transparent 70%);
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(16,185,129,0.18) 0%, transparent 70%);
   top: 35%; left: 38%;
   animation-delay: -2s;
 }
@@ -267,21 +268,21 @@ body::before {
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: rgba(129,140,248,0.08);
-  border: 1px solid rgba(129,140,248,0.22);
+  background: rgba(6,182,212,0.1);
+  border: 1px solid rgba(6,182,212,0.28);
   border-radius: 999px;
   font-size: 0.78rem;
   font-weight: 600;
-  color: var(--accent);
+  color: #22d3ee;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .hero-badge-dot {
   width: 6px; height: 6px;
-  background: #4ade80;
+  background: #06b6d4;
   border-radius: 50%;
-  box-shadow: 0 0 6px #4ade80;
+  box-shadow: 0 0 8px #06b6d4;
   animation: pulse 2s ease-in-out infinite;
 }
 
@@ -303,7 +304,7 @@ body::before {
 
 .hero-line-gradient {
   display: block;
-  background: linear-gradient(130deg, #818cf8 0%, #c084fc 40%, #22d3ee 100%);
+  background: linear-gradient(130deg, #22d3ee 0%, #38bdf8 30%, #818cf8 65%, #34d399 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
